@@ -1,0 +1,54 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+label{
+  font-size: 20px;
+  padding: 25px;
+  margin: 20px 0;
+  font-family: "Segoe UI Web (West European)",Segoe UI,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+}
+
+.textfield{
+  padding-bottom: 10px;
+  max-width: 235px;
+}
+
+.textfield label{
+  font-size: 15px;
+}
+
+.selected{
+  padding: 15px;
+  background-color: "[theme: themePrimary]";
+  color: white;
+}
+
+.unselected{
+  padding: 15px;
+  background-color: "[theme: themeDefault]";
+  color: #000000;
+}
+
+.table-master{
+  margin: 25px 0;
+  box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.15);
+}
+
+.table-header{
+  background-color: "[theme: themePrimary]";
+  color: white;
+  font-size: 18px;
+  font-style: bold;
+}
+
+.table-body{
+  font-size: 15px;
+}
+
+.table-row{
+  display: flex;
+}
+
+.table-cell{
+  padding-right: 10px;
+  min-width: 20%;
+}
