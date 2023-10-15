@@ -1,73 +1,74 @@
 import axios from "axios";
 import * as React from 'react';
 
-let BASE_URL, TOKEN_URL, BLOCKLIST_ITEMS, EPS_ITEMS, GRUPO_ADM, GRUPO_EPS 
+let BASE_URL, TOKEN_URL, BLOCKLIST_ITEMS, EPS_ITEMS, GRUPO_ADM, GRUPO_EPS;
 
 export function initializeContext(contexto){
     BASE_URL = contexto;
     TOKEN_URL = contexto + "/_api/contextinfo";
-    //LISTAS
+    // LISTAS
     BLOCKLIST_ITEMS = contexto + "/_api/web/Lists/GetByTitle('CadastroBlocklist')/Items";
     EPS_ITEMS = contexto + "/_api/web/Lists/GetByTitle('CadastroEPS')/Items";
-    //GRUPOS
+    // GRUPOS
     GRUPO_ADM = contexto + "/_api/Web/SiteGroups/GetByName('Blocklist_ADM')/Users";
     GRUPO_EPS = contexto + "/_api/Web/SiteGroups/GetByName('Blocklist_EPS')/Users";
 }
 
 export function consultarGrupo() {
-    let grupo, userId
-    let admin = false
+    let grupo, userId;
+    let admin = false;
 
     return axios.get(BASE_URL + "/_api/Web/currentuser/?$expand=groups")
         .then((user) => {
 
             for(let i = 0; i < user.data.Groups.length; i++){
-                let groupTitle = user.data.Groups[i].Title
+                let groupTitle = user.data.Groups[i].Title;
 
-                if (groupTitle == "Blocklist_ADM" || groupTitle == "Blocklist_EPS")
+                if (groupTitle == "Blocklist_ADM" || groupTitle == "Blocklist_EPS"){
                     if(groupTitle == "Blocklist_ADM"){
-                        return("admin")
+                        return("admin");
                     }
                     else if (groupTitle == "Blocklist_EPS"){
-                        return("visitante")
+                        return("visitante");
                     }
+                }
             }
-            return (undefined)
+            return (undefined);
         })
 }
 
 export function consultarLista() {
     let lista
 
-    return axios.get(BLOCKLIST_ITEMS + "?$SortDir=Desc")  //"?$top=10"
+    return axios.get(BLOCKLIST_ITEMS + "?$SortDir=Desc")  // "?$top=10"
         .then((listaCadastro) => {
-            lista = listaCadastro
-            return lista
+            lista = listaCadastro;
+            return lista;
         })
 }
 
 export function consultarEPS() {
-    let eps
+    let eps;
 
     return axios.get(EPS_ITEMS)
         .then((listaEps) => {
-            eps = listaEps
-            return eps
+            eps = listaEps;
+            return eps;
         })
 }
 
 export function consultarEmpregado(_cpf) {
-    let profissional
+    let profissional;
 
     return axios.get(BLOCKLIST_ITEMS + "?$filter=CPF" + "+eq('" + _cpf + "')")
         .then((resposta) => {
-            profissional = resposta
-            return profissional
+            profissional = resposta;
+            return profissional;
         })
 }
 
 export function atualizarEmpregado(dados) {
-    let id, method, validacao, urlFinal, token, header, data
+    let id, method, validacao, urlFinal, token, header, data;
 
     return axios.post(TOKEN_URL)
         .then((resposta) => {
@@ -105,10 +106,10 @@ export function atualizarEmpregado(dados) {
                     }
 
                     return axios.post(urlFinal, data, header).then((resposta) => {
-                        return resposta
+                        return resposta;
                     })
                         .catch((error) => {
-                            console.log(error.message)
+                            console.log(error.message);
                         })
                 })
         })
@@ -126,12 +127,13 @@ export function deletarEmpregado(id) {
             }
 
             return axios.delete(urlFinal, { headers: header }).then((resposta) => {
-                return resposta
+                return resposta;
             })
                 .catch((error) => {
-                    console.log(error.message)
+                    console.log(error.message);
                 })
         })
         .catch((error) => {
+            console.log(error.message);
         })
 }

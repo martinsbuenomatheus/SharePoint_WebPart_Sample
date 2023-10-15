@@ -20,7 +20,9 @@
     "cpf-cnpj-validator": "^1.0.3",
     "react": "15.6.2",
     "react-dom": "15.6.2",
-    "string-mask": "^0.3.0"
+    "string-mask": "^0.3.0",
+    "terser-webpack-plugin-legacy": "^1.2.5",
+    "webpack-merge": "^5.8.0"
   },
   "devDependencies": {
     "@types/react": "15.6.6",
