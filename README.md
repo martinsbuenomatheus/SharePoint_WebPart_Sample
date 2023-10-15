@@ -1,10 +1,9 @@
-# blocklist
+# SharePoint CRUD
 
 ## Summary
 
-Short summary on functionality and used technologies.
-
-[picture of the solution in action, if possible]
+This WebPart provides CRUD functions to access and modify data on a SharePoint list.
+It is separated on two profiles, EPS and ADM, based on SharePoint groups.
 
 ## Used SharePoint Framework Version
 
@@ -19,20 +18,18 @@ Short summary on functionality and used technologies.
 
 ## Prerequisites
 
-> Any special pre-requisites?
-
-## Solution
-
-Solution|Author(s)
---------|---------
-folder name | Author details (name, company, twitter alias with link)
+| Dependency | Version | 
+|------|---------|
+|NODE: |![version](https://img.shields.io/badge/version-10.24.2-green.svg)|
+|Yo: |![version](https://img.shields.io/badge/version-3.1.1-green.svg)|
+|SPFx: |![version](https://img.shields.io/badge/version-1.11-green.svg)|
+|React: |![version](https://img.shields.io/badge/version-16.8.5-green.svg)|
 
 ## Version history
 
 Version|Date|Comments
 -------|----|--------
-1.1|March 10, 2021|Update comment
-1.0|January 29, 2021|Initial release
+1.0| September 02, 2021| Initial release
 
 ## Disclaimer
 
@@ -48,21 +45,22 @@ Version|Date|Comments
   - **npm install**
   - **gulp serve**
 
-> Include any additional steps as needed.
-
 ## Features
+- SharePoint Lists </br>
+This WebPart consumes two list of data
+  - CadastroEPS: list of companies, used on picklists.
+  - CadastroBlocklist: main CRUD list
 
-Description of the extension that expands upon high-level summary above.
+- SharePoint Groups </br>
+  - Blocklist_ADM
+  - Blocklist_EPS
 
-This extension illustrates the following concepts:
+- EPS features </br>
+  Members of the group EPS can only READ data from de List.
 
-- topic 1
-- topic 2
-- topic 3
+- ADM features </br>
+  Members of the group ADM can use all CRUD options.
 
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
-
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
 
 ## References
 
